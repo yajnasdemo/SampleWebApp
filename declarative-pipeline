@@ -1,10 +1,19 @@
 pipeline{
     agent any
+    
+    environment{
+    PATH = "C:\DevTools\apache-maven-3.9.1:$PATH"
+    }
     stages{
         stage("Git Checkout"){
             steps{
                 git 'https://github.com/yajnasdemo/SampleWebApp.git'
             }
+        }
+        stage("maven build"){
+            steps{
+                sh "mvn clean package"
+            }    
         }
     }
 }
